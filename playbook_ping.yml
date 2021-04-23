@@ -1,0 +1,36 @@
+---
+- hosts: ruckus
+  gather_facts: no
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: icx
+    ansible_user: pcalle
+    ansible_become: yes
+    ansible_password: pcalle
+    ansible_become_method: enable
+    ansible_become_pass: pcalle
+    #ansible_command_timeout: 80
+
+    #ansible_persistent_log_messages: True
+
+  tasks:
+  # - name: ping to host
+  #   icx_ping:
+  #     dest: 10.45.2.119
+  #   register: output
+
+  - name: ping to host
+    icx_ping:
+      dest: 192.168.4.5
+    register: output
+  
+  # - name: ping to host
+  #   icx_ping:
+  #     dest: 172.16.10.204
+  #   register: output
+
+  - name: show command
+    debug:
+      msg: '{{ output }}'
+
+  
